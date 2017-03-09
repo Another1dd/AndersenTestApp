@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndersenTestApp</string>
+
+    <!-- Buttons-->
+    <string name="new_but">NEW</string>
+    <string name="top_but">TOP</string>
+
+    <string name="img">No image</string>
 </resources>

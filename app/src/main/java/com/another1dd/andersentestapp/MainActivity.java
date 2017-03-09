@@ -1,8 +1,15 @@
 package com.another1dd.andersentestapp;
 
 
+import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 
 
 import com.another1dd.andersentestapp.model.Child;
@@ -23,7 +30,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private String BASE_URL = "https://www.reddit.com";
-    Retrofit client;
     public ArrayList<String> imagesUrls = new ArrayList<>();
 
     @Override
@@ -31,13 +37,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        Button newButton = (Button) findViewById(R.id.new_but);
+        newButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                topButtonClick();
+            }
+        });
+
+        Button topButton = (Button) findViewById(R.id.top_but);
+        topButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newButtonClick();
+            }
+        });
+
+
+    }
+
+    void topButtonClick() {
         Retrofit client = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-    }
-
-    void topButtonClick() {
         TopApiInterface service = client.create(TopApiInterface.class);
         Call<EarthPorn> call = service.getEarthporn(100);
 
@@ -59,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("images", imagesUrls);
+                EarthPornFragment earthPornFragment = new EarthPornFragment();
+                earthPornFragment.setArguments(bundle);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.containerView, earthPornFragment).commit();
 
             }
 
@@ -71,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void newButtonClick() {
+        Retrofit client = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         NewApiInterface service = client.create(NewApiInterface.class);
         Call<EarthPorn> call = service.getEarthporn(100);
 
@@ -92,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("images", imagesUrls);
+                EarthPornFragment earthPornFragment = new EarthPornFragment();
+                earthPornFragment.setArguments(bundle);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.containerView, earthPornFragment).commit();
 
             }
 
