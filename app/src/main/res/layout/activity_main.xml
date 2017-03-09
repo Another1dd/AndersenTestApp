@@ -7,31 +7,30 @@
     tools:context="com.another1dd.andersentestapp.MainActivity">
 
     <FrameLayout
-        android:orientation="vertical"
+        android:id="@+id/containerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/containerView">
-    </FrameLayout>
+        android:orientation="vertical"/>
+
     <Button
         android:id="@+id/new_but"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="NEW"
         android:layout_gravity="bottom|start"
-        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginStart="15dp"
+        android:text="@string/new_but" />
+
     <Button
         android:id="@+id/top_but"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="TOP"
         android:layout_gravity="bottom|end"
+        android:layout_marginBottom="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        />
-
+        android:text="@string/top_but" />
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,13 +1,10 @@
 package com.another1dd.andersentestapp;
 
 
-import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
@@ -30,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private String BASE_URL = "https://www.reddit.com";
-    public ArrayList<String> imagesUrls = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<EarthPorn> call, Response<EarthPorn> response) {
-
+                ArrayList<String> imagesUrls = new ArrayList<>();
                 EarthPorn earthPorn = response.body();
                 Data data = earthPorn.getData();
                 List<Child> childList = data.getChildren();
@@ -112,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<EarthPorn> call, Response<EarthPorn> response) {
-
+                ArrayList<String> imagesUrls = new ArrayList<>();
                 EarthPorn earthPorn = response.body();
                 Data data = earthPorn.getData();
                 List<Child> childList = data.getChildren();
